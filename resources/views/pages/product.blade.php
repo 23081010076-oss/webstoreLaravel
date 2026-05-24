@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <div class="flex items-center gap-2 my-5">
-                        <div x-data="{ quantity: 1 }" class="flex gap-2 items-centerm y-5">
+                        <div x-data="{ quantity: 1 }" class="flex gap-2 items-center my-5">
                             <div
                                 class="inline-block px-3 py-2 bg-white border border-gray-200 rounded-lg dark:bg-neutral-900 dark:border-neutral-700">
                                 <div class="flex items-center gap-x-1.5">

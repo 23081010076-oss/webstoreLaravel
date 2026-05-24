@@ -13,5 +13,9 @@ interface CartServiceInterface
     public function remove(string $sku) : void;
     public function getItemBySku(string $sku) : ?CartItemData;
     public function all() : CartData;
+    public function clear() : void;
+    public function applyCoupon(string $code) : void;
+    public function removeCoupon() : void;
+    public function getAppliedCoupon() : ?string;
 }
 

@@ -70,6 +70,27 @@ class SessionCartService implements CartServiceInterface
 
     public function all() : CartData
     {
-        return new CartData($this->load());
+        return new CartData($this->load(), $this->getAppliedCoupon());
+    }
+
+    public function clear(): void
+    {
+        Session::forget($this->session_key);
+        Session::forget($this->session_key . '_coupon');
+    }
+
+    public function applyCoupon(string $code): void
+    {
+        Session::put($this->session_key . '_coupon', $code);
+    }
+
+    public function removeCoupon(): void
+    {
+        Session::forget($this->session_key . '_coupon');
+    }
+
+    public function getAppliedCoupon(): ?string
+    {
+        return Session::get($this->session_key . '_coupon');
     }
 }

@@ -32,14 +32,14 @@ class ProductData extends Data
     {
         return new self(
             $product->name,
-            $product->tags()->where('type', 'collection')->pluck('name')->implode(', '),
+            $product->tags->where('type', 'collection')->pluck('name')->implode(', '),
             $product->sku,
             $product->slug,
             $product->description,
             $product->stock,
             floatval($product->price),
             $product->weight,
-            $product->getFirstMediaUrl('cover'),
+            $product->getFirstMediaUrl('cover', 'cover'),
             gallery: $with_gallery ? $product->getMedia('gallery')->map(fn ($record) => $record->getUrl())->toArray() : new Optional()
         );
     }

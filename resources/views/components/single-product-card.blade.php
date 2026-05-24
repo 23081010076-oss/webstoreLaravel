@@ -12,7 +12,7 @@
         <span class="text-sm text-gray-500">
             {{ $product->short_desc }}
         </span>
-        <p class="mt-1 font-semibold text-black dark:text-black">
+        <p class="mt-1 font-semibold text-black dark:text-neutral-200">
             {{ $product->price_formated }}
         </p>
     </div>

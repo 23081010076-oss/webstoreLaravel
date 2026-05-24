@@ -3,13 +3,15 @@
     toasts: [],
 
     listenForEvent() {
-      window.Echo.channel('orders')
-        .listen('.orders', (e) => {
-          this.addToast(
-            'Pesanan Baru',
-            `${e.customer_name} Baru saja membeli ${e.product_qty} buah ${e.product}`
-          );
-        });
+      if (window.Echo) {
+        window.Echo.channel('orders')
+          .listen('.orders', (e) => {
+            this.addToast(
+              'Pesanan Baru',
+              `${e.customer_name} Baru saja membeli ${e.product_qty} buah ${e.product}`
+            );
+          });
+      }
     },
 
     addToast(title, message) {
@@ -22,6 +24,7 @@
     }
   }"
   x-init="listenForEvent()" 
+  @show-toast.window="addToast($event.detail.title, $event.detail.message)"
   class="fixed bottom-[10px] right-[10px] z-50 space-y-3"
 >
   <template x-for="toast in toasts" :key="toast.id">

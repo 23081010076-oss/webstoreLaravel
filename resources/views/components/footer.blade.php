@@ -4,8 +4,8 @@
         <!-- Grid -->
         <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-3">
             <div class="col-span-full lg:col-span-1">
-                <a class="flex-none text-xl font-semibold text-white focus:outline-hidden focus:opacity-80" href="#"
-                    aria-label="Brand">Brand</a>
+                <a class="flex-none text-xl font-semibold text-white focus:outline-hidden focus:opacity-80" href="{{ route('home') }}" wire:navigate
+                    aria-label="Brand">{{ config('app.name') }}</a>
                 <div class="my-5 text-gray-500 ">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores mollitia distinctio,
                     doloribus,

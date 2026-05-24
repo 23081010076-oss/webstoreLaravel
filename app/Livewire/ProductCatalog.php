@@ -8,6 +8,7 @@ use App\Models\Product;
 use Livewire\Component;
 use App\Data\ProductData;
 use App\Data\ProductCollectionData;
+use Livewire\Attributes\Title;
 use Livewire\WithPagination;
 
 class ProductCatalog extends Component
@@ -18,7 +19,7 @@ class ProductCatalog extends Component
     public $queryString = [
         'select_collections' => [ 'except' => [] ],
         'sort_by' => [ 'except' => 'newest' ],
-        'search' => [ 'except' => []]
+        'search' => [ 'except' => '' ]
     ];
 
     public array $select_collections = [];
@@ -38,7 +39,7 @@ class ProductCatalog extends Component
             'select_collections' => 'array',
             'select_collections.*' => 'integer|exists:tags,id',
             'search' => 'nullable|string|min:3|max:300',
-            'sort_by' => 'in:newest,latest,price_asc,price_desc',
+            'sort_by' => 'in:newest,latest,oldest,price_asc,price_desc',
         ];
     }
     
@@ -58,6 +59,7 @@ class ProductCatalog extends Component
         $this->resetPage();
     }
 
+    #[Title('Product Catalog')]
     public function render()
     {
         $collections = ProductCollectionData::collect([]);
@@ -69,7 +71,7 @@ class ProductCatalog extends Component
 
        $collection_result = Tag::query()->withType('collection')->withCount('products')->get();
         // $result = Product::paginate(1); 
-       $query = Product::query();
+       $query = Product::query()->with(['media', 'tags']);
        
        if($this->search){
               $query->where('name', 'LIKE', "%{$this->search}%");
@@ -82,6 +84,7 @@ class ProductCatalog extends Component
        }
 
        switch($this->sort_by){
+           case 'oldest' :
            case 'latest' :
                 $query->oldest();
                 break;
@@ -90,14 +93,16 @@ class ProductCatalog extends Component
                 break;
            case 'price_desc' :
                 $query->orderBy('price', 'desc');
-            default :
+                break;
+           case 'newest' :
+           default :
                 $query->latest();
                 break;
          } 
        
         
         $products = ProductData::collect(
-            $query->paginate(1)
+            $query->paginate(9)
         );
         $collections = ProductCollectionData::collect($collection_result);
 

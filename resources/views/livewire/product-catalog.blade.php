@@ -5,7 +5,7 @@
                 <div>
                     <div class="space-y-3">
                         <input type="text" placeholder="Search"
-                        wire:model="search"
+                        wire:model.live.debounce.300ms="search"
                             class="@error('search') border-red-600 @enderror py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                         @error('search')
                             <div class="text-sm text-red-600">
@@ -36,7 +36,7 @@
                                         {{ $item->name }}
                                     </label>
                                 </div>
-                                <span class="text-xs text-gray-800 font-loght">({{ $item->product_count }})</span>
+                                <span class="text-xs text-gray-800 font-light">({{ $item->product_count }})</span>
                             </div>
                         @endforeach
                     </div>
@@ -71,13 +71,13 @@
                             @enderror
                         </span>
                         <select
-                            wire:model="sort_by"
+                            wire:model.live="sort_by"
                             class="px-3 py-2 text-sm border-gray-200 rounded-lg pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                            <option selected="">Open this select menu</option>
-                            <option value="newest">Product Newst</option>
-                            <option value="latest">Product Latest</option>
-                            <option value="price_asc">Product Price A-Z</option>
-                            <option value="price_desc">Product Price Z-A</option>
+                            <option selected="">Sort by option</option>
+                            <option value="newest">Product Newest</option>
+                            <option value="oldest">Product Oldest</option>
+                            <option value="price_asc">Product Price Low to High</option>
+                            <option value="price_desc">Product Price High to Low</option>
                         </select>
                     </div>
                 </div>

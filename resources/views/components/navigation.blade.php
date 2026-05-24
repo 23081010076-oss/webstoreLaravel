@@ -6,7 +6,7 @@
         <!-- Logo w/ Collapse Button -->
         <div class="flex items-center justify-between">
             <a class="flex-none text-xl font-semibold text-black focus:outline-hidden focus:opacity-80 dark:text-white"
-                href="{{ url('/') }}" aria-label="Brand">{{ config('app.name') }}</a>
+                href="{{ route('home') }}" wire:navigate aria-label="Brand">{{ config('app.name') }}</a>
 
             <!-- Collapse Button -->
             <div class="md:hidden">
@@ -41,8 +41,8 @@
             <div
                 class="overflow-hidden overflow-y-auto max-h-[75vh] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
                 <div class="py-2 md:py-0 flex flex-col md:flex-row md:items-center md:justify-end gap-0.5 md:gap-1">
-                    <a class="flex items-center p-2 text-sm text-blue-600 focus:outline-hidden focus:text-blue-600 dark:text-blue-500 dark:focus:text-blue-500"
-                        href="#" aria-current="page">
+                    <a class="flex items-center p-2 text-sm text-gray-800 hover:text-gray-500 focus:outline-hidden focus:text-gray-500 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
+                        href="{{ route('home') }}" wire:navigate>
                         <svg class="block shrink-0 size-4 me-3 md:me-2 md:hidden" xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -54,7 +54,7 @@
                     </a>
 
                     <a class="flex items-center p-2 text-sm text-gray-800 hover:text-gray-500 focus:outline-hidden focus:text-gray-500 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
-                        href="{{ route('product-catalog') }}">
+                        href="{{ route('product-catalog') }}" wire:navigate>
                         <svg class="block shrink-0 size-4 me-3 md:me-2 md:hidden" xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shirt">

@@ -51,8 +51,10 @@ class AddToCart extends Component
         ));
 
         $this->dispatch('cart-Update');
-
-        return redirect()->route('cart');
+        $this->dispatch('show-toast', 
+            title: 'Berhasil ditambahkan', 
+            message: 'Produk berhasil ditambahkan ke keranjang belanja Anda.'
+        );
     }
     public function render()
     {
